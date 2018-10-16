@@ -1,0 +1,752 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{717AA0EE-4DE3-4714-891F-F63F6794BCC9}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZzukBotAuthenticationServer</RootNamespace>
+    <AssemblyName>ZzukBotAuthenticationServer</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>E:\Users\Ano\Desktop\UserTransfer\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>334D60A86E52DC334C9495FB233FD5F6E91965D1</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ZzukBotAuthenticationServer_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevOne.Security.Cryptography.BCrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.1.0.0.0\lib\DevOne.Security.Cryptography.BCrypt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuthServer\AuthServerHandler.cs" />
+    <Compile Include="AuthServer\Client.cs" />
+    <Compile Include="AuthServer\Opcodes.cs" />
+    <Compile Include="AuthServer\AuthData.cs" />
+    <Compile Include="AuthServer\Database\UserInfo.cs" />
+    <Compile Include="AuthServer\Database\Manager.cs" />
+    <Compile Include="AuthServer\SendOvers.cs" />
+    <Compile Include="Entities\convert_apps.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\convert_app_sessions.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\convert_bbcode_mediatag.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\convert_custom_bbcode.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\convert_link.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\convert_link_pms.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\convert_link_posts.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\convert_link_topics.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\convert_logs.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_acp_search_index.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_acp_tab_order.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_acronyms.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_admin_login_logs.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_admin_logs.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_admin_permission_rows.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_advertisements.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_announcements.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_api_keys.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_api_logs.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_applications.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_attachments.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_attachments_map.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_banfilters.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_bulk_mail.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_cache.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_dev.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_dnames_change.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_edit_history.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_email_templates.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_emoticons.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_error_logs.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_files.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_files_temp.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_file_logs.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_file_storage.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_follow.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_geoip_cache.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_googleauth_used_codes.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_groups.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_hooks.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_ignored_users.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_image_proxy.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_incoming_emails.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_ipsconnect_queue.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_ipsconnect_slaves.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_item_markers.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_javascript.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_leaders.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_leaders_groups.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_log.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_login_handlers.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_mail_error_logs.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_members.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_members_warn_actions.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_members_warn_logs.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_members_warn_reasons.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_member_ranks.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_member_status_replies.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_member_status_updates.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_menu.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_message_posts.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_message_topics.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_message_topic_user_map.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_moderators.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_moderator_logs.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_modules.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_notifications.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_notification_defaults.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_notification_preferences.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_permission_index.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_pfields_content.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_pfields_data.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_pfields_groups.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_plugins.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_polls.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_profanity_filters.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_question_and_answer.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_queue.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_ratings.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_rc_comments.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_rc_index.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_rc_reports.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_reputation_index.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_reputation_leaderboard_history.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_reputation_levels.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_rss_export.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_search_index.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_search_index_item_map.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_search_index_tags.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_security_answers.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_security_questions.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_seo_meta.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_sessions.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_share_links.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_sitemap.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_soft_delete_log.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_spam_service_log.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_store.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_streams.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_sys_conf_settings.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_sys_cp_sessions.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_sys_lang.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_sys_lang_words.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_sys_social_groups.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_sys_social_group_members.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_tags.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_tags_cache.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_tags_perms.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_tasks.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_tasks_log.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_themes.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_theme_conflict.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_theme_content_history.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_theme_css.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_theme_resources.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_theme_settings_fields.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_theme_settings_values.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_theme_templates.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_upgrade_history.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_validating.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_view_updates.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_voters.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_widgets.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_widget_areas.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\core_widget_trash.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\forums_answer_ratings.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\forums_archive_posts.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\forums_archive_rules.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\forums_forums.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\forums_posts.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\forums_question_ratings.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\forums_rss_import.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\forums_rss_imported.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\forums_topics.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\forums_topic_mmod.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_alternate_contacts.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_billing_agreements.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_cart_uploads.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_coupons.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_customers.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_customer_addresses.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_customer_cards.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_customer_fields.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_customer_history.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_donate_goals.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_donate_logs.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_eom.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_fraud_rules.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_hosting_accounts.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_hosting_errors.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_hosting_queues.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_hosting_servers.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_invoices.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_licensekeys.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_notes.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_packages.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_packages_ads.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_packages_hosting.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_packages_products.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_package_base_prices.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_package_fields.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_package_groups.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_package_images.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_paymethods.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_payouts.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_product_options.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_purchases.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_referrals.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_referral_banners.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_referral_rules.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_reviews.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_shipping.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_ship_orders.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_departments.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_fields.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_notify.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_ratings.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_replies.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_requests.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_request_log.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_severities.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_staff_dpt_order.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_staff_preferences.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_statuses.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_stock_actions.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_streams.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_tracker.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_support_views.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_tax.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\nexus_transactions.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ZzukBotEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZzukBotEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ZzukBotEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ZzukBotEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZzukBotEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\zzukbot_migrated_users.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\zzukbot_v1_users.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\zzukbot_versions.cs">
+      <DependentUpon>ZzukBotEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Models\PacketModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Entities\ZzukBotEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ZzukBotEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entities\ZzukBotEntities.edmx.diagram">
+      <DependentUpon>ZzukBotEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entities\ZzukBotEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ZzukBotEntities.edmx</DependentUpon>
+      <LastGenOutput>ZzukBotEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\ZzukBotEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ZzukBotEntities.edmx</DependentUpon>
+      <LastGenOutput>ZzukBotEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
